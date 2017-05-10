@@ -1,0 +1,53 @@
+@import '../variables';
+@import '../mixins';
+
+.checkbox-8{
+	position: relative;
+	input[type="checkbox"]{
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 5;
+		opacity: 0;
+		cursor: pointer;
+	}
+	label{
+		position: relative;
+		display: inline-block;
+		width: 95px;
+		height: 42px;
+		border-radius: 10px;
+		background-color: $background-color;
+		transition: 0.4s;
+		&:after{
+			content: "";
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 60px;
+			height: 42px;
+			border-radius: 10px;
+			z-index: 2;
+			background-color: $button-color;
+			box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+			transition: 0.4s
+		}
+	}
+	input[type="checkbox"]{
+		&:hover{
+			+ label:after{
+				box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.2), 0 3px 8px 0 rgba(0, 0, 0, 0.15);
+			}
+		}
+		&:checked{
+			+ label {
+				background-color: darken($primary-color, 18%);
+			}
+			+ label:after{
+				left: 35px;
+			}
+		}
+	}
+}

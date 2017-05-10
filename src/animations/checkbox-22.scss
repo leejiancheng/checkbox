@@ -1,0 +1,129 @@
+@import '../variables';
+@import '../mixins';
+
+@mixin leftToRight1() {
+	top: 0;
+	left: 0;
+	width: 0;
+	height: 100%;
+}
+@mixin bottomToTop1() {
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 0;
+}
+@mixin rightToLeft1() {
+	top: 0;
+	right: 0;
+	width: 0;
+	height: 100%;
+}
+@mixin topToBottom1() {
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 0;
+}
+
+
+
+@mixin leftToRight2() {
+	top: 0;
+	left: 0;
+}
+@mixin bottomToTop2() {
+	bottom: 0;
+	left: 0;
+}
+@mixin rightToLeft2() {
+	top: 0;
+	right: 0;
+}
+@mixin topToBottom2() {
+	top: 0;
+	left: 0;
+}
+
+
+.checkbox-22{
+	position: relative;
+	input[type="checkbox"]{
+		display: none;
+	}
+	label{
+		position: relative;
+		display: inline-block;
+		height: 17px;
+		padding: 6px 43px 8px 9px;
+		border-radius: 5px;
+		box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+		color: #464e50;
+		background-color: $button-color;
+		overflow: hidden;
+		transition: all 0.3s linear, color 0 linear;
+		cursor: pointer;
+		font-size: 1em;
+		&:before{
+			content: "";
+			position: absolute;
+			background-color: $primary-color;
+			transition: all 0.3s ease-in;
+			// 从左到右
+			@include leftToRight1();
+			// 从上到下
+			// @include topToBottom1();
+			// // 从下到上
+			// @include bottomToTop1();
+			// // // 从右到左
+			// @include rightToLeft1();
+		}
+		&:after{
+			content: "";
+			position: absolute;
+			top: 4px;
+			right: 3px;
+			display: block;
+			width: 24px;
+			height: 16px;
+			background: $button-color;
+			border-radius: 3px;
+			box-shadow: 0 0 1px rgba(0, 0, 0, 0.6), inset 0 -18px 15px -10px rgba(0, 0, 0, 0.05);
+			padding: 4px 0px;
+			text-align: center;
+			color: #496f7a;
+			line-height: 16px;
+		}
+		
+	}
+	input[type="checkbox"]{
+		&:active{
+			+ label:after{
+				box-shadow: 0 0 1px rgba(0, 0, 0, 0.6), inset 0 2px 6px rgba(0, 0, 0, 0.1), inset 0 -18px 15px -10px rgba(0, 0, 0, 0.05);
+			}
+		}
+		&:checked{
+			+ label{
+				color: $button-color;
+			}
+			+ label:before{
+				content: " ";
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				text-shadow: 0 1px 0 rgba(0,0,0,0.1);
+				// 从左到右
+				@include leftToRight2();
+				// 从上到下
+				// @include topToBottom2();
+				// // 从下到上
+				// @include bottomToTop2();
+				// // // 从右到左
+				// @include rightToLeft2();
+			}
+			+ label:after{
+				content: "\2715";
+			}
+		}
+	}
+}
